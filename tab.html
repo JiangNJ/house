@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by anonymous (http://jsbin.com/gehatihoqe/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+<style id="jsbin-css">
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tab1 {
+	margin：0 auto;
+	width: 600px;
+	text-align: center;
+}
+.tab1:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.tab1 >li{
+  width: 165px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  border: 1px solid #ccc;
+  
+}
+.tab2 >li{
+  width: 500px;
+  height: 300px;
+  border: 1px solid #ccc;
+  display: none;
+}
+.tab1 .active{
+  background: gray;
+}
+.tab2 .active{
+  display: block;
+}
+</style>
+</head>
+<body>
+  <div class="tab-ct">
+    <ul class="tab1" >
+		<li class="active">第一项</li>
+		<li>第二项</li>
+		<li>第三项</li>
+	</ul>
+	<ul class="tab2" >
+		<li class="active">first</li>
+		<li>second</li>
+		<li>third</li>
+	</ul>
+  </div>
+</div>
+<script id="jsbin-javascript">
+var tabs = document.querySelectorAll('.tab-ct .tab1>li')
+var panels = document.querySelectorAll('.tab-ct .tab2>li')
+/*for (var i = 0; i < tabs.length; i++) {    //方法1：for循环
+	tabs[i].addEventListener('click', function(){
+
+	})
+}
+*/
+tabs.forEach(function(tab){  //方法2：forEach循环
+	tab.addEventListener('click', function(){
+		tabs.forEach(function(node){
+			node.classList.remove('active')
+		})
+		this.classList.add('active')
+		var index = [].indexOf.call(tabs,this)
+		panels.forEach(function(node){
+			node.classList.remove('active')
+		})
+		panels[index].classList.add('active')
+	})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function Tab(tabNode){
+  this.init = function(tabNode){
+     this.tabs = tabNode.querySelectorAll('.tab-ct .header>li')
+     this.panels = tabNode.querySelectorAll('.tab-ct .tab2>li')
+     this.tabHeader = tabNode.querySelector('.tab-ct .header')
+  }
+ 
+  this.bind = function(){
+    
+    
+    this.tabHeader.onclick = function(e){
+     if(e.target.tagName.tolowerCase() === 'li'){
+        self.tabs.forEach(function(node){
+          node.classList.remove('active')
+        })
+        var index = [].indexOf.call(self.tabs, e.target)
+        self.panels.forEach(function(node){
+          node.classList.remove('active')
+        })
+        self.panels[index].classList.add('active')
+      }
+    }
+  }
+  this.init(tabNode)
+  this.bind()
+}
+var tabNode1 = document.querySelectorAll('.tab-ct')[0]
+var tabNode2 = document.querySelectorAll('.tab-ct')[1]
+var tabNode3 = document.querySelectorAll('.tab-ct')[2]
+
+var tab1 = new Tab(tabNode1)
+var tab2 = new Tab(tabNode2)
+var tab3 = new Tab(tabNode3)*/
+</script>
+</body>
+</html>
